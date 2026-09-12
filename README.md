@@ -90,13 +90,13 @@ actions tied to the current ChatGPT user. Leave public content anonymous.
 ## Useful Commands
 
 - `npm run dev`: start local development
-- `npm run build`: generate the static site in `dist/client/`
+- `npm run build`: generate the static site in `dist/`
 - `npm test`: build the starter and verify its rendered loading skeleton
 - `npm run db:generate`: generate Drizzle migrations after schema changes
 
 ## Manual deployment
 
-Run `npm run build`, then upload the **contents** of `dist/client/` to the
+Run `npm run build`, then upload the **contents** of `dist/` to the
 document root of your web server (for example `public_html/`). The build creates
 directory-based `index.html` files for clean URLs, so it does not require
 rewrite rules, Node.js, or a server-side application runtime.

@@ -1,4 +1,4 @@
-import { copyFile, mkdir, readdir } from "node:fs/promises";
+import { copyFile, mkdir, readdir, rename, rm } from "node:fs/promises";
 import { basename, dirname, join } from "node:path";
 
 const exportDirectory = new URL("../dist/client/", import.meta.url);
@@ -28,3 +28,15 @@ for (const htmlFile of htmlFiles) {
 }
 
 console.log(`Prepared ${htmlFiles.length} clean URL(s) for manual upload.`);
+
+// Cloudflare Pages publishes `dist/`. Vinext writes browser assets one level
+// deeper, so flatten the static export and discard the server-only bundle.
+const distDirectory = new URL("../dist/", import.meta.url);
+const stagedDirectory = new URL("../.pages-dist/", import.meta.url);
+
+await rm(stagedDirectory, { recursive: true, force: true });
+await rename(exportDirectory, stagedDirectory);
+await rm(distDirectory, { recursive: true, force: true });
+await rename(stagedDirectory, distDirectory);
+
+console.log("Prepared dist/ for Cloudflare Pages.");
