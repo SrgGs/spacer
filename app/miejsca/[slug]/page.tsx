@@ -1,5 +1,5 @@
+/* eslint-disable @next/next/no-html-link-for-pages -- Static Pages export needs full document navigation. */
 import type { Metadata } from "next";
-import Link from "next/link";
 import placesData from "../places.json";
 import PhotoGallery from "./PhotoGallery";
 
@@ -61,7 +61,7 @@ export default async function PlacePage({ params }: { params: Promise<{ slug: st
 
   if (!place) {
     return (
-      <main className="page-shell"><section className="phone missing-place"><h1>Nie znaleziono miejsca</h1><Link href="/">Wróć do trasy</Link></section></main>
+      <main className="page-shell"><section className="phone missing-place"><h1>Nie znaleziono miejsca</h1><a href="/">Wróć do trasy</a></section></main>
     );
   }
 
@@ -74,7 +74,7 @@ export default async function PlacePage({ params }: { params: Promise<{ slug: st
     <main className="page-shell detail-shell">
       <article className="phone detail-phone">
         <header className="detail-header">
-          <Link className="back-link" href="/">Wróć do trasy</Link>
+          <a className="back-link" href="/">Wróć do trasy</a>
           <span className="detail-badge">Punkt {place.number} z 9</span>
           <p className="eyebrow">Spacer po Zawierciu</p>
           <h1>{place.title}</h1>
@@ -97,8 +97,8 @@ export default async function PlacePage({ params }: { params: Promise<{ slug: st
           <PhotoGallery images={place.images} title={place.title} />
 
           <nav className="route-nav" aria-label="Nawigacja między punktami trasy">
-            {previous ? <Link href={`/miejsca/${previous.slug}`}><span>Poprzedni punkt</span><strong>{previous.title}</strong></Link> : <span />}
-            {next ? <Link className="route-next" href={`/miejsca/${next.slug}`}><span>Następny punkt</span><strong>{next.title}</strong></Link> : <Link className="route-next" href="/"><span>Koniec trasy</span><strong>Wróć do listy</strong></Link>}
+            {previous ? <a href={`/miejsca/${previous.slug}/`}><span>Poprzedni punkt</span><strong>{previous.title}</strong></a> : <span />}
+            {next ? <a className="route-next" href={`/miejsca/${next.slug}/`}><span>Następny punkt</span><strong>{next.title}</strong></a> : <a className="route-next" href="/"><span>Koniec trasy</span><strong>Wróć do listy</strong></a>}
           </nav>
 
           <footer className="story-footer">

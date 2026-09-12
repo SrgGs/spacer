@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import places from "./miejsca/places.json";
 
 export const metadata: Metadata = {
@@ -20,14 +19,14 @@ export default function Home() {
         <ol className="places-list">
           {places.map((place) => (
             <li key={place.slug}>
-              <Link className="place-row" href={`/miejsca/${place.slug}`} aria-label={`${place.number}. ${place.title}`}>
+              <a className="place-row" href={`/miejsca/${place.slug}/`} aria-label={`${place.number}. ${place.title}`}>
                 <span className="place-number" aria-hidden="true">{place.number}</span>
                 <span className="place-copy">
                   <strong>{place.title}</strong>
                   <small>{place.lead}</small>
                 </span>
                 <span className="open-label">Otwórz</span>
-              </Link>
+              </a>
             </li>
           ))}
         </ol>
