@@ -4,6 +4,7 @@ import placesData from "../places.json";
 import PhotoGallery from "./PhotoGallery";
 
 type Place = (typeof placesData)[number];
+type StorySection = { heading: string; paragraphs: string[]; items?: string[]; afterItems?: string[] };
 
 const places = placesData as Place[];
 
@@ -66,7 +67,15 @@ export default async function PlacePage({ params }: { params: Promise<{ slug: st
   }
 
   const video = videos[place.slug];
-  const paragraphs = readableParagraphs(place.paragraphs, video?.url);
+  const sections = (place as Place & { sections?: StorySection[] }).sections;
+  const storySections = sections
+    ? sections.map((section) => ({
+        heading: section.heading,
+        paragraphs: readableParagraphs(section.paragraphs, video?.url),
+        items: section.items,
+        afterItems: section.afterItems && readableParagraphs(section.afterItems, video?.url),
+      }))
+    : [{ heading: "Historia miejsca", paragraphs: readableParagraphs(place.paragraphs, video?.url), items: undefined, afterItems: undefined }];
   const previous = places[place.number - 2];
   const next = places[place.number];
 
@@ -83,8 +92,15 @@ export default async function PlacePage({ params }: { params: Promise<{ slug: st
 
         <div className="story-content">
           <section className="story-text" aria-labelledby="history-title">
-            <h2 id="history-title">Historia miejsca</h2>
-            {paragraphs.map((paragraph, index) => <p key={`${index}-${paragraph.slice(0, 24)}`}>{paragraph}</p>)}
+            <h2 id="history-title" className="sr-only">Historia miejsca</h2>
+            {storySections.map((section) => (
+              <section className="story-section" key={section.heading}>
+                <h2>{section.heading}</h2>
+                {section.paragraphs.map((paragraph, index) => <p key={`${index}-${paragraph.slice(0, 24)}`}>{paragraph}</p>)}
+                {section.items && <ul>{section.items.map((item) => <li key={item}>{item}</li>)}</ul>}
+                {section.afterItems?.map((paragraph, index) => <p key={`after-${index}-${paragraph.slice(0, 24)}`}>{paragraph}</p>)}
+              </section>
+            ))}
           </section>
 
           {video && (
