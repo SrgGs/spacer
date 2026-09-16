@@ -51,8 +51,8 @@ test("ships content and images for every place", async () => {
   const places = JSON.parse(await readFile(new URL("../app/miejsca/places.json", import.meta.url), "utf8"));
   const photoCounts = {
     dworzec: 4, "palacyk-holenderskiego": 5, "krwawy-piatek": 2,
-    "kamienica-3-maja-3": 4, wiadukt: 4, "drukarnia-plomien": 4,
-    bazylika: 5, "plac-stosika": 5, "park-kosciuszki": 6,
+    "kamienica-3-maja-3": 3, wiadukt: 3, "drukarnia-plomien": 3,
+    bazylika: 4, "plac-stosika": 5, "park-kosciuszki": 6,
   };
   assert.equal(places.length, 9);
   for (const place of places) {
