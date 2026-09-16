@@ -2,7 +2,7 @@
   {
     "number": 1,
     "slug": "dworzec",
-    "title": "Niezwykła historia dworca",
+    "title": "Dworzec kolejowy",
     "lead": "Świadek narodzin miasta, narodowej historii i technicznego geniuszu",
     "sections": [
       {
@@ -80,7 +80,7 @@
   {
     "number": 2,
     "slug": "palacyk-holenderskiego",
-    "title": "Willa Marynowskich i Holenderskiego",
+    "title": "Pałacyk Holenderskiego",
     "lead": "Zapomniany neorenesansowy klejnot przy ulicy 3 Maja 25",
     "sections": [
       {
@@ -139,7 +139,7 @@
   {
     "number": 3,
     "slug": "krwawy-piatek",
-    "title": "Dawny magistrat i Krwawy Piątek",
+    "title": "Dawny magistrat",
     "lead": "Historia robotniczego protestu, który tragicznie zapisał się w pamięci miasta",
     "sections": [
       {
@@ -185,7 +185,7 @@
   {
     "number": 4,
     "slug": "kamienica-3-maja-3",
-    "title": "Mroczny symbol przy 3 Maja 3",
+    "title": "Dom Udziałowy oraz dawna siedziba PUBP",
     "lead": "Od domu rejenta do siedziby aparatu terroru",
     "sections": [
       {
@@ -250,7 +250,7 @@
   {
     "number": 5,
     "slug": "wiadukt",
-    "title": "Miasto przedzielone szlabanem",
+    "title": "Wiadukt i dawny przejazd",
     "lead": "Zawiercie przed budową wiaduktu i walka o bezpieczne połączenie miasta",
     "sections": [
       {
@@ -333,7 +333,7 @@
   {
     "number": 6,
     "slug": "drukarnia-plomien",
-    "title": "Drukarnia i tablica „Płomień”",
+    "title": "Szkoła i tajna drukarnia",
     "lead": "Miejsce konspiracyjnej działalności i pamięci zawierciańskiego ruchu oporu",
     "sections": [
       {
@@ -384,7 +384,7 @@
   {
     "number": 7,
     "slug": "bazylika",
-    "title": "Bazylika Świętych Apostołów Piotra i Pawła",
+    "title": "Bazylika św. Piotra i Pawła",
     "lead": "Monumentalna świątynia zbudowana wysiłkiem przemysłowców i mieszkańców",
     "sections": [
       {
@@ -474,7 +474,7 @@
   {
     "number": 8,
     "slug": "plac-stosika",
-    "title": "Plac Stosika i Pomnik Nieznanego Żołnierza",
+    "title": "Plac Stosika, Pomnik Nieznanego Żołnierza i Pałacyk Szymańskiego",
     "lead": "Miejsce pamięci oraz architektoniczna perła dawnego Zawiercia",
     "sections": [
       {
@@ -546,7 +546,7 @@
   {
     "number": 9,
     "slug": "park-kosciuszki",
-    "title": "Zielone serce miasta",
+    "title": "Park im. Tadeusza Kościuszki, Łaźnia Miejska – Galeria Stara Łaźnia i Resursa Obywatelska T.A. „Zawiercie”",
     "lead": "Park Kościuszki, Stara Łaźnia i Resursa - miejsca pełne niezwykłych przemian",
     "sections": [
       {

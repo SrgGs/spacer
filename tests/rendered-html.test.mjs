@@ -18,7 +18,7 @@ test("renders all nine stops on the walking route", async () => {
   const response = await render();
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.match(html, /<title>Spacer po Zawierciu<\/title>/i);
+  assert.match(html, /<title>Zawierciański szlak historyczny<\/title>/i);
   assert.match(html, /9 miejsc do odkrycia/);
   assert.equal((html.match(/href="\/miejsca\//g) ?? []).length, 9);
   assert.match(html, /href="\/miejsca\/park-kosciuszki"/);
@@ -29,7 +29,7 @@ test("renders a complete place page with photos and route navigation", async () 
   const response = await render("/miejsca/wiadukt");
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.match(html, /Miasto przedzielone szlabanem/);
+  assert.match(html, /Wiadukt i dawny przejazd/);
   assert.match(html, /Punkt\s*(?:<!-- -->)?5(?:<!-- -->)?\s*z 9/);
   assert.match(html, /Historia miejsca/);
   assert.match(html, /Powiększ zdjęcie/);

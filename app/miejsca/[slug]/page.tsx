@@ -52,8 +52,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const place = getPlace(slug);
   return place
-    ? { title: `${place.title} | Spacer po Zawierciu`, description: place.lead }
-    : { title: "Miejsce | Spacer po Zawierciu" };
+    ? { title: `${place.title} | Zawierciański szlak historyczny`, description: place.lead }
+    : { title: "Miejsce | Zawierciański szlak historyczny" };
 }
 
 export default async function PlacePage({ params }: { params: Promise<{ slug: string }> }) {
@@ -85,9 +85,8 @@ export default async function PlacePage({ params }: { params: Promise<{ slug: st
         <header className="detail-header">
           <a className="back-link" href="/">Wróć do trasy</a>
           <span className="detail-badge">Punkt {place.number} z 9</span>
-          <p className="eyebrow">Spacer po Zawierciu</p>
+          <p className="eyebrow">Zawierciański szlak historyczny</p>
           <h1>{place.title}</h1>
-          <p className="detail-lead">{place.lead}</p>
         </header>
 
         <div className="story-content">
@@ -95,7 +94,6 @@ export default async function PlacePage({ params }: { params: Promise<{ slug: st
             <h2 id="history-title" className="sr-only">Historia miejsca</h2>
             {storySections.map((section) => (
               <section className="story-section" key={section.heading}>
-                <h2>{section.heading}</h2>
                 {section.paragraphs.map((paragraph, index) => <p key={`${index}-${paragraph.slice(0, 24)}`}>{paragraph}</p>)}
                 {section.items && <ul>{section.items.map((item) => <li key={item}>{item}</li>)}</ul>}
                 {section.afterItems?.map((paragraph, index) => <p key={`after-${index}-${paragraph.slice(0, 24)}`}>{paragraph}</p>)}

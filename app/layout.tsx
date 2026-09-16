@@ -13,18 +13,18 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Spacer po Zawierciu",
+  title: "Zawierciański szlak historyczny",
   description: "Mobilna trasa spacerowa po dziewięciu miejscach w Zawierciu.",
   openGraph: {
     type: "website",
     locale: "pl_PL",
-    title: "Spacer po Zawierciu",
+    title: "Zawierciański szlak historyczny",
     description: "9 miejsc, 9 historii. Mobilny przewodnik po Zawierciu.",
-    images: [{ url: "/og.png", width: 1740, height: 910, alt: "Spacer po Zawierciu - 9 miejsc, 9 historii" }],
+    images: [{ url: "/og.png", width: 1740, height: 910, alt: "Zawierciański szlak historyczny - 9 miejsc, 9 historii" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Spacer po Zawierciu",
+    title: "Zawierciański szlak historyczny",
     description: "9 miejsc, 9 historii. Mobilny przewodnik po Zawierciu.",
     images: ["/og.png"],
   },

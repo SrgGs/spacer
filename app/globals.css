@@ -74,8 +74,7 @@ h1 {
   letter-spacing: -0.025em;
 }
 
-.route-count,
-.detail-lead {
+.route-count {
   margin: 10px 0 0;
   color: #fff2a7;
   font-size: 15px;
@@ -128,21 +127,13 @@ h1 {
   font-weight: 700;
 }
 
-.place-copy strong,
-.place-copy small {
+.place-copy strong {
   display: block;
 }
 
 .place-copy strong {
   font-size: 16px;
   line-height: 1.35;
-}
-
-.place-copy small {
-  margin-top: 4px;
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.4;
 }
 
 .open-label {
@@ -182,8 +173,7 @@ h1 {
   font-weight: 700;
 }
 
-.detail-header h1,
-.detail-lead {
+.detail-header h1 {
   max-width: 560px;
 }
 
@@ -215,10 +205,6 @@ h1 {
   margin-top: 34px;
   padding-top: 30px;
   border-top: 1px solid var(--line);
-}
-
-.story-section h2 {
-  color: var(--accent-dark);
 }
 
 .story-text p {

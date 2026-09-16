@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import places from "./miejsca/places.json";
 
 export const metadata: Metadata = {
-  title: "Spacer po Zawierciu",
+  title: "Zawierciański szlak historyczny",
   description: "Lista dziewięciu punktów na trasie spaceru po Zawierciu.",
 };
 
@@ -11,9 +11,9 @@ export default function Home() {
     <main className="page-shell">
       <section className="phone" aria-labelledby="page-title">
         <header className="app-header">
-          <p className="eyebrow">Trasa spaceru</p>
-          <h1 id="page-title">Zawiercie</h1>
-          <p className="route-count">9 miejsc do odkrycia</p>
+          <p className="eyebrow">Pierwsze kroki po Zawierciu</p>
+          <h1 id="page-title">Zawierciański szlak historyczny</h1>
+          <p className="route-count">9 przystanków na szlaku historii</p>
         </header>
 
         <ol className="places-list">
@@ -23,7 +23,6 @@ export default function Home() {
                 <span className="place-number" aria-hidden="true">{place.number}</span>
                 <span className="place-copy">
                   <strong>{place.title}</strong>
-                  <small>{place.lead}</small>
                 </span>
                 <span className="open-label" aria-hidden="true">→</span>
               </a>
