@@ -1,12 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --ink: #202426;
-  --muted: #6f6a66;
-  --line: #e8e2de;
+  --ink: #721326;
+  --muted: #8f3a36;
+  --line: #efc94f;
   --paper: #ffffff;
-  --accent: #c91836;
-  --canvas: #f5f2ef;
+  --accent: #d91e3b;
+  --accent-dark: #ad1530;
+  --yellow: #ffdc5a;
+  --canvas: #bd1734;
 }
 
 * {
@@ -38,7 +40,7 @@ button {
   min-height: calc(100svh - 64px);
   margin: 0 auto;
   overflow: hidden;
-  border: 1px solid var(--line);
+  border: 2px solid var(--yellow);
   border-radius: 18px;
   background: var(--paper);
 }
@@ -46,13 +48,13 @@ button {
 .app-header,
 .detail-header {
   padding: 32px;
-  color: #fff;
+  color: var(--yellow);
   background: var(--accent);
 }
 
 .eyebrow {
   margin: 0 0 8px;
-  color: #fff;
+  color: var(--yellow);
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -72,10 +74,9 @@ h1 {
   letter-spacing: -0.025em;
 }
 
-.route-count,
-.detail-lead {
+.route-count {
   margin: 10px 0 0;
-  color: rgba(255, 255, 255, 0.86);
+  color: #fff2a7;
   font-size: 15px;
   line-height: 1.5;
 }
@@ -93,7 +94,7 @@ h1 {
 .place-row {
   min-height: 82px;
   display: grid;
-  grid-template-columns: 30px minmax(0, 1fr) auto;
+  grid-template-columns: 36px minmax(0, 1fr) auto;
   align-items: center;
   gap: 14px;
   padding: 16px 24px;
@@ -103,25 +104,30 @@ h1 {
 
 .place-row:hover,
 .place-row:focus-visible {
-  background: #faf8f6;
+  background: #ffe980;
 }
 
 .place-row:focus-visible,
 .photos button:focus-visible,
 .route-nav a:focus-visible,
 .dialog-close:focus-visible {
-  outline: 3px solid #202426;
+  outline: 3px solid var(--accent-dark);
   outline-offset: -3px;
 }
 
 .place-number {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
   color: var(--accent);
-  font-size: 15px;
+  background: var(--yellow);
+  font-size: 14px;
   font-weight: 700;
 }
 
-.place-copy strong,
-.place-copy small {
+.place-copy strong {
   display: block;
 }
 
@@ -130,17 +136,17 @@ h1 {
   line-height: 1.35;
 }
 
-.place-copy small {
-  margin-top: 4px;
-  color: var(--muted);
-  font-size: 12px;
-  line-height: 1.4;
-}
-
 .open-label {
-  color: var(--accent);
-  font-size: 12px;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--yellow);
+  background: var(--accent);
+  font-size: 21px;
   font-weight: 700;
+  line-height: 1;
 }
 
 .detail-header {
@@ -151,7 +157,7 @@ h1 {
 .back-link {
   display: inline-block;
   margin-bottom: 32px;
-  color: #fff;
+  color: var(--yellow);
   font-size: 14px;
   font-weight: 700;
   text-decoration: underline;
@@ -162,13 +168,12 @@ h1 {
   position: absolute;
   top: 27px;
   right: 32px;
-  color: #fff;
+  color: var(--yellow);
   font-size: 12px;
   font-weight: 700;
 }
 
-.detail-header h1,
-.detail-lead {
+.detail-header h1 {
   max-width: 560px;
 }
 
@@ -184,11 +189,45 @@ h1 {
   letter-spacing: -0.015em;
 }
 
+.story-text .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.story-section + .story-section {
+  margin-top: 34px;
+  padding-top: 30px;
+  border-top: 1px solid var(--line);
+}
+
+.story-section h2 {
+  color: var(--accent-dark);
+}
+
 .story-text p {
   margin: 0 0 18px;
-  color: #3f4142;
+  color: var(--ink);
   font-size: 16px;
   line-height: 1.72;
+}
+
+.story-section ul {
+  margin: 0 0 18px;
+  padding-left: 22px;
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.72;
+}
+
+.story-section li + li {
+  margin-top: 8px;
 }
 
 .photos {
@@ -200,7 +239,7 @@ h1 {
 .photos-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
+  gap: 10px;
 }
 
 .photo {
@@ -208,7 +247,7 @@ h1 {
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 10px;
-  background: #faf8f6;
+  background: #ffe980;
 }
 
 .photo-main {
@@ -234,7 +273,7 @@ h1 {
 }
 
 .photo-main img {
-  max-height: 420px;
+  max-height: 336px;
   aspect-ratio: auto;
   object-fit: contain;
 }
@@ -317,7 +356,7 @@ h1 {
 
 .video-link:hover,
 .video-link:focus-visible {
-  background: #a9142d;
+  background: var(--accent-dark);
 }
 
 .video-link:focus-visible {
@@ -359,7 +398,9 @@ h1 {
 }
 
 .route-nav a:hover {
+  color: var(--accent);
   border-color: var(--accent);
+  background: #ffe980;
 }
 
 .route-nav span,
@@ -441,12 +482,12 @@ h1 {
   }
 
   .place-row {
-    grid-template-columns: 24px minmax(0, 1fr);
+    grid-template-columns: 36px minmax(0, 1fr) auto;
     padding: 16px 20px;
   }
 
   .open-label {
-    grid-column: 2;
+    grid-column: auto;
   }
 
   .photos-grid {

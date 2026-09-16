@@ -4,6 +4,8 @@ import placesData from "../places.json";
 import PhotoGallery from "./PhotoGallery";
 
 type Place = (typeof placesData)[number];
+type StorySection = { heading: string; paragraphs: string[]; items?: string[]; afterItems?: string[] };
+type GalleryImage = { src: string; thumbnail: string; alt: string; caption: string };
 
 const places = placesData as Place[];
 
@@ -13,6 +15,30 @@ const videos: Record<string, { url: string; label: string }> = {
   wiadukt: { url: "https://youtu.be/mhhvNywdMHc", label: "Historia budowy wiaduktu i trasy WZ" },
   "park-kosciuszki": { url: "https://youtu.be/m5AyEnTEdFM", label: "Historia Parku im. Tadeusza Kościuszki" },
 };
+
+const photoCounts: Record<string, number> = {
+  dworzec: 4,
+  "palacyk-holenderskiego": 5,
+  "krwawy-piatek": 2,
+  "kamienica-3-maja-3": 3,
+  wiadukt: 3,
+  "drukarnia-plomien": 3,
+  bazylika: 4,
+  "plac-stosika": 5,
+  "park-kosciuszki": 6,
+};
+
+function galleryImages(place: Place): GalleryImage[] {
+  return Array.from({ length: photoCounts[place.slug] ?? 0 }, (_, index) => {
+    const number = String(index + 1).padStart(2, "0");
+    return {
+      src: `/historia/${place.slug}/${number}.jpg`,
+      thumbnail: `/historia/${place.slug}/${number}-thumb.jpg`,
+      alt: `${place.title} – zdjęcie ${index + 1}`,
+      caption: `Zdjęcie ${index + 1}`,
+    };
+  });
+}
 
 function getPlace(slug: string) {
   return places.find((place) => place.slug === slug);
@@ -51,8 +77,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const place = getPlace(slug);
   return place
-    ? { title: `${place.title} | Spacer po Zawierciu`, description: place.lead }
-    : { title: "Miejsce | Spacer po Zawierciu" };
+    ? { title: `${place.title} | Zawierciański szlak historyczny`, description: place.lead }
+    : { title: "Miejsce | Zawierciański szlak historyczny" };
 }
 
 export default async function PlacePage({ params }: { params: Promise<{ slug: string }> }) {
@@ -66,7 +92,16 @@ export default async function PlacePage({ params }: { params: Promise<{ slug: st
   }
 
   const video = videos[place.slug];
-  const paragraphs = readableParagraphs(place.paragraphs, video?.url);
+  const images = galleryImages(place);
+  const sections = (place as Place & { sections?: StorySection[] }).sections;
+  const storySections = sections
+    ? sections.map((section) => ({
+        heading: section.heading,
+        paragraphs: readableParagraphs(section.paragraphs, video?.url),
+        items: section.items,
+        afterItems: section.afterItems && readableParagraphs(section.afterItems, video?.url),
+      }))
+    : [{ heading: "Historia miejsca", paragraphs: readableParagraphs(place.paragraphs, video?.url), items: undefined, afterItems: undefined }];
   const previous = places[place.number - 2];
   const next = places[place.number];
 
@@ -76,15 +111,21 @@ export default async function PlacePage({ params }: { params: Promise<{ slug: st
         <header className="detail-header">
           <a className="back-link" href="/">Wróć do trasy</a>
           <span className="detail-badge">Punkt {place.number} z 9</span>
-          <p className="eyebrow">Spacer po Zawierciu</p>
+          <p className="eyebrow">Zawierciański szlak historyczny</p>
           <h1>{place.title}</h1>
-          <p className="detail-lead">{place.lead}</p>
         </header>
 
         <div className="story-content">
           <section className="story-text" aria-labelledby="history-title">
-            <h2 id="history-title">Historia miejsca</h2>
-            {paragraphs.map((paragraph, index) => <p key={`${index}-${paragraph.slice(0, 24)}`}>{paragraph}</p>)}
+            <h2 id="history-title" className="sr-only">Historia miejsca</h2>
+            {storySections.map((section) => (
+              <section className="story-section" key={section.heading}>
+                <h2>{section.heading}</h2>
+                {section.paragraphs.map((paragraph, index) => <p key={`${index}-${paragraph.slice(0, 24)}`}>{paragraph}</p>)}
+                {section.items && <ul>{section.items.map((item) => <li key={item}>{item}</li>)}</ul>}
+                {section.afterItems?.map((paragraph, index) => <p key={`after-${index}-${paragraph.slice(0, 24)}`}>{paragraph}</p>)}
+              </section>
+            ))}
           </section>
 
           {video && (
@@ -94,7 +135,7 @@ export default async function PlacePage({ params }: { params: Promise<{ slug: st
             </a>
           )}
 
-          <PhotoGallery images={place.images} title={place.title} />
+          <PhotoGallery images={images} title={place.title} />
 
           <nav className="route-nav" aria-label="Nawigacja między punktami trasy">
             {previous ? <a href={`/miejsca/${previous.slug}/`}><span>Poprzedni punkt</span><strong>{previous.title}</strong></a> : <span />}
