@@ -5,6 +5,7 @@ import PhotoGallery from "./PhotoGallery";
 
 type Place = (typeof placesData)[number];
 type StorySection = { heading: string; paragraphs: string[]; items?: string[]; afterItems?: string[] };
+type GalleryImage = { src: string; thumbnail: string; alt: string; caption: string };
 
 const places = placesData as Place[];
 
@@ -14,6 +15,30 @@ const videos: Record<string, { url: string; label: string }> = {
   wiadukt: { url: "https://youtu.be/mhhvNywdMHc", label: "Historia budowy wiaduktu i trasy WZ" },
   "park-kosciuszki": { url: "https://youtu.be/m5AyEnTEdFM", label: "Historia Parku im. Tadeusza Kościuszki" },
 };
+
+const photoCounts: Record<string, number> = {
+  dworzec: 4,
+  "palacyk-holenderskiego": 5,
+  "krwawy-piatek": 2,
+  "kamienica-3-maja-3": 4,
+  wiadukt: 4,
+  "drukarnia-plomien": 4,
+  bazylika: 5,
+  "plac-stosika": 5,
+  "park-kosciuszki": 6,
+};
+
+function galleryImages(place: Place): GalleryImage[] {
+  return Array.from({ length: photoCounts[place.slug] ?? 0 }, (_, index) => {
+    const number = String(index + 1).padStart(2, "0");
+    return {
+      src: `/historia/${place.slug}/${number}.jpg`,
+      thumbnail: `/historia/${place.slug}/${number}-thumb.jpg`,
+      alt: `${place.title} – zdjęcie ${index + 1}`,
+      caption: `Zdjęcie ${index + 1}`,
+    };
+  });
+}
 
 function getPlace(slug: string) {
   return places.find((place) => place.slug === slug);
@@ -67,6 +92,7 @@ export default async function PlacePage({ params }: { params: Promise<{ slug: st
   }
 
   const video = videos[place.slug];
+  const images = galleryImages(place);
   const sections = (place as Place & { sections?: StorySection[] }).sections;
   const storySections = sections
     ? sections.map((section) => ({
@@ -109,7 +135,7 @@ export default async function PlacePage({ params }: { params: Promise<{ slug: st
             </a>
           )}
 
-          <PhotoGallery images={place.images} title={place.title} />
+          <PhotoGallery images={images} title={place.title} />
 
           <nav className="route-nav" aria-label="Nawigacja między punktami trasy">
             {previous ? <a href={`/miejsca/${previous.slug}/`}><span>Poprzedni punkt</span><strong>{previous.title}</strong></a> : <span />}

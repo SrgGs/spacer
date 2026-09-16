@@ -49,14 +49,21 @@ test("keeps photos in the gallery and highlights video links", async () => {
 
 test("ships content and images for every place", async () => {
   const places = JSON.parse(await readFile(new URL("../app/miejsca/places.json", import.meta.url), "utf8"));
+  const photoCounts = {
+    dworzec: 4, "palacyk-holenderskiego": 5, "krwawy-piatek": 2,
+    "kamienica-3-maja-3": 4, wiadukt: 4, "drukarnia-plomien": 4,
+    bazylika: 5, "plac-stosika": 5, "park-kosciuszki": 6,
+  };
   assert.equal(places.length, 9);
   for (const place of places) {
     assert.ok(place.paragraphs.join(" ").length > 500, `${place.slug} should have substantial content`);
-    assert.ok(place.images.length > 0, `${place.slug} should have at least one image`);
-    for (const image of place.images) {
-      await access(new URL(`../public${image.src}`, import.meta.url));
+    assert.ok(photoCounts[place.slug] > 0, `${place.slug} should have at least one image`);
+    for (let index = 1; index <= photoCounts[place.slug]; index += 1) {
+      const number = String(index).padStart(2, "0");
+      await access(new URL(`../public/historia/${place.slug}/${number}.jpg`, import.meta.url));
+      await access(new URL(`../public/historia/${place.slug}/${number}-thumb.jpg`, import.meta.url));
     }
     const files = await readdir(new URL(`../public/historia/${place.slug}/`, import.meta.url));
-    assert.equal(files.length, place.images.length);
+    assert.equal(files.length, photoCounts[place.slug] * 2);
   }
 });

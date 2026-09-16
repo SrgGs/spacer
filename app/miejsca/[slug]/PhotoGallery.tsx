@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 
 type Image = {
   src: string;
+  thumbnail?: string;
   alt: string;
   caption: string;
 };
@@ -29,7 +30,7 @@ export default function PhotoGallery({ images, title }: { images: Image[]; title
           {images.map((image, index) => (
             <figure className={index === 0 ? "photo photo-main" : "photo"} key={image.src}>
               <button type="button" onClick={() => openImage(image)} aria-label={`Powiększ zdjęcie: ${image.caption}`}>
-                <img src={image.src} alt={image.alt} loading={index === 0 ? "eager" : "lazy"} />
+                <img src={image.thumbnail ?? image.src} alt={image.alt} loading={index === 0 ? "eager" : "lazy"} />
                 <span>Powiększ zdjęcie</span>
               </button>
             </figure>

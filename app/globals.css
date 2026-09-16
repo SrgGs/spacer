@@ -239,7 +239,7 @@ h1 {
 .photos-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
+  gap: 10px;
 }
 
 .photo {
@@ -273,7 +273,7 @@ h1 {
 }
 
 .photo-main img {
-  max-height: 420px;
+  max-height: 336px;
   aspect-ratio: auto;
   object-fit: contain;
 }
