@@ -207,6 +207,10 @@ h1 {
   border-top: 1px solid var(--line);
 }
 
+.story-section h2 {
+  color: var(--accent-dark);
+}
+
 .story-text p {
   margin: 0 0 18px;
   color: var(--ink);

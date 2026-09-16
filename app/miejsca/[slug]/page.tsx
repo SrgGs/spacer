@@ -94,6 +94,7 @@ export default async function PlacePage({ params }: { params: Promise<{ slug: st
             <h2 id="history-title" className="sr-only">Historia miejsca</h2>
             {storySections.map((section) => (
               <section className="story-section" key={section.heading}>
+                <h2>{section.heading}</h2>
                 {section.paragraphs.map((paragraph, index) => <p key={`${index}-${paragraph.slice(0, 24)}`}>{paragraph}</p>)}
                 {section.items && <ul>{section.items.map((item) => <li key={item}>{item}</li>)}</ul>}
                 {section.afterItems?.map((paragraph, index) => <p key={`after-${index}-${paragraph.slice(0, 24)}`}>{paragraph}</p>)}
