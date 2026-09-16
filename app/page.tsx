@@ -25,7 +25,7 @@ export default function Home() {
                   <strong>{place.title}</strong>
                   <small>{place.lead}</small>
                 </span>
-                <span className="open-label">Otwórz</span>
+                <span className="open-label" aria-hidden="true">→</span>
               </a>
             </li>
           ))}

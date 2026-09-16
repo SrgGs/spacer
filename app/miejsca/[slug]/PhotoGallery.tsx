@@ -32,7 +32,6 @@ export default function PhotoGallery({ images, title }: { images: Image[]; title
                 <img src={image.src} alt={image.alt} loading={index === 0 ? "eager" : "lazy"} />
                 <span>Powiększ zdjęcie</span>
               </button>
-              <figcaption>{image.caption}</figcaption>
             </figure>
           ))}
         </div>
@@ -51,7 +50,6 @@ export default function PhotoGallery({ images, title }: { images: Image[]; title
           <div className="photo-dialog-content">
             <button className="dialog-close" type="button" onClick={closeImage}>Zamknij</button>
             <img src={selected.src} alt={selected.alt} />
-            <p>{selected.caption}</p>
           </div>
         )}
       </dialog>
